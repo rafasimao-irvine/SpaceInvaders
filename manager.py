@@ -28,22 +28,23 @@ class Manager:
         self.gameOn = True
         
         while self.gameOn:
+            dt = fpsClock.tick(30)
+
             #Inputs
             self.inputManager.update()
             
             #Updates
-            self.update()
+            self.update(dt)
                 
             #Renders, put in the screen
             self.render()
             
-            fpsClock.tick(30)
         
     
     #Update
-    def update(self):
+    def update(self, dt):
         #state updates
-        new_state = self.state.update()
+        new_state = self.state.update(dt)
         if (new_state == 0):
             return
        
