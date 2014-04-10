@@ -38,46 +38,46 @@ class Invaders():
         self.x= 2 *aOIOTL
         self.myBox = pygame.Rect(x, y, 10, 10)
     
-'''
-Move changes the position of the invader by taking its current position, and adds the current
-movement speed to that old position value. If it hits the side of the game board or it will
-move past it during this method call, it should drop down one line and reverse direction.
-'''
+        '''
+    Move changes the position of the invader by taking its current position, and adds the current
+    movement speed to that old position value. If it hits the side of the game board or it will
+    move past it during this method call, it should drop down one line and reverse direction.
+    '''
     def move(self):
-    ''' if self.position == #hits either side of the game Board
-        self.y=y+1
-        self.position = [x, y]
-        self.reverseDirection(movingRight)'''
-            #else:
-            if self.movingRight == True:
-                self.position = [x+mvmtSpeed, y]
-                self.x = x+mvmtSpeed
-            else:
-                self.position = [x-mvmtSpeed, y]
-                self.x = self.x - self.mvmtSpeed
+        ''' if self.position == #hits either side of the game Board
+            self.y=y+1
+            self.position = [x, y]
+            self.reverseDirection(movingRight)'''
+                #else:
+        if self.movingRight == True:
+                        self.position = [x+mvmtSpeed, y]
+                        self.x = x+mvmtSpeed
+        else:
+                        self.position = [x-mvmtSpeed, y]
+                        self.x = self.x - self.mvmtSpeed
 
     
-'''
-speedUp() is called by the manager class, and will make the invaders move faster when one has 
-been killed
-'''
+    '''
+    speedUp() is called by the manager class, and will make the invaders move faster when one has 
+    been killed
+    '''
     def speedUp(self):
         a= self.mvmentSpeed + 1
         self.mvmtSpeed = a
     
-'''
-shoot checks to see if a given interval has passed since the last time this invader fired,
-if it has, then it should make a projectile object
-'''
+    '''
+    shoot checks to see if a given interval has passed since the last time this invader fired,
+    if it has, then it should make a projectile object
+    '''
     def shoot(self, clockTime):
         if clockTime >= self.lastShot+3:
             #create a new projectile object moving downward
             self.lastShot= clockTime 
     
-'''
-update() is called by the manager class individually for each invader, and will handle calling 
-that invader's move() and shoot()
-'''
+    '''
+    update() is called by the manager class individually for each invader, and will handle calling 
+    that invader's move() and shoot()
+    '''
     def update(self, clockTimeStamp):
         self.move()
         self.shoot(clockTimeStamp)
@@ -92,12 +92,12 @@ that invader's move() and shoot()
     def render(self, screen):
         pygame.draw.rect(screen, pygame.Color(255,255,255), (self.x,y,50,50))
 
-    def removeFromGameBoard():
+    #def removeFromGameBoard():
     '''
     how should we implement this? just make them transparent and remove them from the list of
     invaders?
     '''
-    def isHit():
+    #def isHit():
     '''
     #if hit by a projectile,
         return True
