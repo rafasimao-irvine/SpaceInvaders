@@ -15,8 +15,7 @@ position = [x,y]
 mvmtSpeed = 1
 clock = pygame.time.Clock()
 lastShot = clock
-currentDirection = "right"
-myBox #invader's model
+movingRight = True
 
 
 '''
@@ -28,14 +27,14 @@ taking that floor we just calculated, multiplying it by the max amount of invade
 then subtracting that product from the amount of invaders that have been spawned. We then move
 this invader over the appropriate amount of spaces.
 '''
-def Invader(amountOfInvadersSpawned):
+def __init__(self, amountOfInvadersSpawned):
     #check if there are destroyed invaders you can replace
-    temp = #floor of amountOfInvadersCurrentlySpawned/maxInvaders
+    temp = amountOfInvadersSpawned/maxInvaders
     self.y = y+temp
     temp2 = temp#times maxInvaders
     #amountOfInvadersOnThisLine
     aOIOTL = amountOfInvadersSpawned-temp2
-    self.x= 2 #times aOIOTL
+    self.x= 2 *aOIOTL
     self.myBox = pygame.Rect(x, y, 10, 10)
     
 '''
@@ -43,32 +42,33 @@ Move changes the position of the invader by taking its current position, and add
 movement speed to that old position value. If it hits the side of the game board or it will
 move past it during this method call, it should drop down one line and reverse direction.
 '''
-def move():
-    if self.position == #hits either side of the game Board
+def move(self):
+    ''' if self.position == #hits either side of the game Board
         self.y=y+1
         self.position = [x, y]
-        self.reverseDirection(currentDirection)
+        self.reverseDirection(movingRight)'''
+    #else:
+    if self.movingRight == True:
+        self.position = [x+mvmtSpeed, y]
+        self.x = x+mvmtSpeed
     else:
-        if self.currentDirection == "right":
-            self.position = [x+mvmtSpeed, y]
-            self.x = x+mvmtSpeed
-        else:
-            self.position = [x-mvmtSpeed, y]
-            self.x = self.x - self.mvmtSpeed
+        self.position = [x-mvmtSpeed, y]
+        self.x = self.x - self.mvmtSpeed
     
 '''
 speedUp() is called by the manager class, and will make the invaders move faster when one has 
 been killed
 '''
-def speedUp():
-    self.mvmtSpeed = self.mvmentSpeed++
+def speedUp(self):
+    a= self.mvmentSpeed + 1
+    self.mvmtSpeed = a
     
 '''
 shoot checks to see if a given interval has passed since the last time this invader fired,
 if it has, then it should make a projectile object
 '''
 def shoot(self, clockTime):
-    if clockTime >= self.lastShot+3
+    if clockTime >= self.lastShot+3:
         #create a new projectile object moving downward
         self.lastShot= clockTime 
     
@@ -82,10 +82,12 @@ def update(self, clockTimeStamp):
     #render?
     
 def reverseDirection(self, currentDir):
-    if self.currentDir == "right":
-        self.currentDirection = "left"
+    if self.currentDir == True:
+        self.currentDirection = False
     else:
-        self.currentDirection = "right"
+        self.currentDirection = True
+def render(self, screen):
+    pygame.draw.rect(screen, pygame.Color(255,255,255), (self.x,y,50,50))
 
 def removeFromGameBoard():
     '''
@@ -93,8 +95,10 @@ def removeFromGameBoard():
     invaders?
     '''
 def isHit():
+    '''
     #if hit by a projectile,
         return True
     else:
         return False
+        '''
     
