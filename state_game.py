@@ -19,12 +19,12 @@ class StateGame(State):
     
     def update(self, dt):
         State.update(self, dt) 
-<<<<<<< HEAD
-        self.player.update(dt,self.screen)   
-=======
+
+        self.player.update(dt)   
+
         self.player.update(dt)   
         self.invader.update(dt)
->>>>>>> FETCH_HEAD
+
         
     def render(self):
         State.render(self) 
