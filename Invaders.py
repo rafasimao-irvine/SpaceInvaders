@@ -49,12 +49,12 @@ class Invaders():
             self.position = [x, y]
             self.reverseDirection(movingRight)'''
                 #else:
-        if self.movingRight == True:
-                        self.position = [x+mvmtSpeed, y]
-                        self.x = x+mvmtSpeed
+        if movingRight == True:
+            position = [self.x+mvmtSpeed, y]
+            self.x = self.x+mvmtSpeed
         else:
-                        self.position = [x-mvmtSpeed, y]
-                        self.x = self.x - self.mvmtSpeed
+            position = [x-mvmtSpeed, y]
+            x = self.x - self.mvmtSpeed
 
     
     '''
@@ -69,10 +69,10 @@ class Invaders():
     shoot checks to see if a given interval has passed since the last time this invader fired,
     if it has, then it should make a projectile object
     '''
-    def shoot(self, clockTime):
-        if clockTime >= self.lastShot+3:
+    #def shoot(self, clockTime):
+       # if clockTime >= lastShot+3:
             #create a new projectile object moving downward
-            self.lastShot= clockTime 
+           # self.lastShot= clockTime 
     
     '''
     update() is called by the manager class individually for each invader, and will handle calling 
@@ -80,8 +80,7 @@ class Invaders():
     '''
     def update(self, clockTimeStamp):
         self.move()
-        self.shoot(clockTimeStamp)
-        self.render()
+        #self.shoot(clockTimeStamp)
     
     def reverseDirection(self, currentDir):
         if self.currentDir == True:
@@ -90,7 +89,7 @@ class Invaders():
             self.currentDirection = True
                             
     def render(self, screen):
-        pygame.draw.rect(screen, pygame.Color(255,255,255), (self.x,y,50,50))
+        pygame.draw.rect(screen, pygame.Color(255,255,255), (self.x,y,25,25))
 
     #def removeFromGameBoard():
     '''
