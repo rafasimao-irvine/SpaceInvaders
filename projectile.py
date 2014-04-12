@@ -4,56 +4,21 @@ Created on Apr 9, 2014
 @author: ryanp
 '''
 import pygame
-from pygame.locals import KEYDOWN, QUIT, K_ESCAPE, K_UP
-
 
 
 class Projectile:
 
-    def __init__(self, xpos, ypos, dx, dy):
+    'Inits the Projectile attributes'
+    def __init__(self, xpos, ypos, speed):
         self.x = xpos
         self.y = ypos
-        self.dx = dx
-        self.dy = dy
-        self.shot = pygame.Rect(self.x, self.y, 5, 30)
+        self.speed = speed
+        self.dt = 5
     
-    def update(self):
-        self.shot.move_ip(self.dx, self.dy)
-    
-    def render(self):
-        pygame.draw.rect(screen, (0, 191, 255), self.shot) 
+    'Moves the Projectile'
+    def move(self):
+        self.y += self.speed*self.dt
 
-
-
-#Test Projectile
-pygame.init()
-fpsClock = pygame.time.Clock()
-
-##Screen
-width, height = 950, 600
-size = width, height
-screen  = pygame.display.set_mode(size)
-
-projectile = Projectile(width/2, height, 0, -5)
-    
-while True:
-    
-    #fpsClock.tick(50)  # frames per second
-    
-    
-    for event in pygame.event.get():  # inputs
-        if event.type == QUIT:
-            exit()
-        if event.type == KEYDOWN:
-            key = event.key
-            if key == K_ESCAPE:
-                exit()
-            #elif key == K_UP:
-                
-            
-    screen.fill((0,0,0))
-    projectile.update()
-    projectile.render() 
-    
-    pygame.display.update()
-    
+    'Draws the Projectile in the screen'
+    def render(self, screen):
+        pygame.draw.rect(screen, pygame.Color(0, 191, 255), (self.x, self.y, 5, 30)) 

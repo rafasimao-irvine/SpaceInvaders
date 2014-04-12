@@ -17,7 +17,7 @@ class StateGame(State):
     
     def update(self, dt):
         State.update(self, dt) 
-        self.player.update(dt)   
+        self.player.update(dt,self.screen)   
         
     def render(self):
         State.render(self) 
