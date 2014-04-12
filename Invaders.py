@@ -7,6 +7,8 @@ Created on Apr 9, 2014
 
 
 import pygame
+from projectile import Projectile
+
 
 maxInvaders = 5
 x = 0
@@ -37,6 +39,9 @@ class Invaders():
         aOIOTL = amountOfInvadersSpawned-temp2
         self.x= 2 *aOIOTL
         self.myBox = pygame.Rect(x, y, 10, 10)
+        
+        self.projectile_list = list()
+        self.fire_delay = 15
     
         '''
     Move changes the position of the invader by taking its current position, and adds the current
@@ -69,10 +74,13 @@ class Invaders():
     shoot checks to see if a given interval has passed since the last time this invader fired,
     if it has, then it should make a projectile object
     '''
-    #def shoot(self, clockTime):
-       # if clockTime >= lastShot+3:
+    def shoot(self, clockTime):
+        if self.fire_delay == 15:
             #create a new projectile object moving downward
-           # self.lastShot= clockTime 
+            self.fire_delay = 0
+            
+            projectile = Projectile(self.x+12.25, self.y+15, 2.5)
+            self.projectile_list.append(projectile)
     
     '''
     update() is called by the manager class individually for each invader, and will handle calling 
@@ -80,7 +88,12 @@ class Invaders():
     '''
     def update(self, clockTimeStamp):
         self.move()
-        #self.shoot(clockTimeStamp)
+        self.shoot(clockTimeStamp)
+        if self.projectile_list.__len__() > 0: 
+            for shot in self.projectile_list:
+                shot.move()
+        if self.fire_delay < 15:
+            self.fire_delay+=1
     
     def reverseDirection(self, currentDir):
         if self.currentDir == True:
@@ -89,6 +102,10 @@ class Invaders():
             self.currentDirection = True
                             
     def render(self, screen):
+        if self.projectile_list.__len__() > 0: 
+            for shot in self.projectile_list:
+                color = pygame.Color(255, 0, 0)
+                shot.render(color, screen)
         pygame.draw.rect(screen, pygame.Color(255,255,255), (self.x,y,25,25))
 
     #def removeFromGameBoard():

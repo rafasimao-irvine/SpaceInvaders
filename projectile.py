@@ -20,5 +20,5 @@ class Projectile:
         self.y += self.speed*self.dt
 
     'Draws the Projectile in the screen'
-    def render(self, screen):
-        pygame.draw.rect(screen, pygame.Color(0, 191, 255), (self.x, self.y, 5, 30)) 
+    def render(self, color, screen):
+        pygame.draw.rect(screen, color, (self.x, self.y, 5, 30)) 

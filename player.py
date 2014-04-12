@@ -38,15 +38,16 @@ class Player(InputListener):
         if self.fire_shot and self.fire_delay == 15:
             projectile = Projectile(self.position_x+22.5, self.position_y, -2.5)
             self.projectile_list.append(projectile)
-            print(self.projectile_list.__len__())
+            #print(self.projectile_list.__len__())
             self.fire_delay = 0
     
     'Draws the player and projectiles on the screen'
     def render(self, screen):
-        pygame.draw.rect(screen, pygame.Color(255,255,255), (self.position_x,self.position_y,50,50))
         if self.projectile_list.__len__() > 0: 
             for shot in self.projectile_list:
-                shot.render(screen)
+                color = pygame.Color(0, 191, 255)
+                shot.render(color, screen)
+        pygame.draw.rect(screen, pygame.Color(255,255,255), (self.position_x,self.position_y,50,50))
             
 
     'Receives inputs and treats them if they corresponds to moving or firing'
