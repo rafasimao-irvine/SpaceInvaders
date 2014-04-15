@@ -9,7 +9,7 @@ Main game state. Might be the class where the whole game will run at.
 class StateGame(State):
 
     player = Player() 
-    invader = Invaders(0)
+    invader = Invaders(5)
 
     def __init__(self, screen, inputManager):
         State.__init__(self, screen, inputManager)
@@ -21,17 +21,21 @@ class StateGame(State):
         
     def destroy(self): pass
     
+    
+    
+    '''Update'''
     def update(self, dt):
         State.update(self, dt) 
 
-        self.player.update(dt)   
-
+        #Updates the game objects
         self.player.update(dt)   
         self.invader.update(dt)
-        
+
+        #treats projectiles hits        
         self._treat_invader_projectiles()
         self._treat_player_projectiles()
         
+    'Make invaders projectiles collisions and perform the consequences'
     def _treat_invader_projectiles(self):
         if self.invader.projectile_list.__len__() > 0: 
             #Goes through all the invaders projectiles
@@ -43,6 +47,7 @@ class StateGame(State):
                     self.player.receive_hit()
                     self.invader.projectile_list.remove(shot)
 
+    'Make players projectiles collisions and perform the consequences'
     def _treat_player_projectiles(self):
         if self.player.projectile_list.__len__() > 0: 
             #Goes through all the invaders projectiles
@@ -50,11 +55,15 @@ class StateGame(State):
                 #If it is out of the board game box, it is removed
                 self._remove_if_out_of_board(self.player.projectile_list, shot)
                     
+    'Removes a projectile from a projectile list if it is out of the board bounds'
     def _remove_if_out_of_board(self, projectile_list, projectile):
         #If it is out of the board game box, it is removed
         if not self.board_bounds.colliderect(projectile.get_collision_box()):
             projectile_list.remove(projectile)
-        
+   
+
+    
+    '''Render'''
     def render(self):
         State.render(self) 
         #background
@@ -64,7 +73,8 @@ class StateGame(State):
         self.invader.render(self.screen)
         
         self.draw_player_life()
-        
+       
+    'Draws the main player life' 
     def draw_player_life(self):
         msgSurfaceObject = self.fontObj.render("Life "+str(self.player.life), False, pygame.Color(205,255,205))
         msgRectObject = msgSurfaceObject.get_rect()
