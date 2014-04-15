@@ -38,7 +38,6 @@ class Manager:
                 
             #Renders, put in the screen
             self.render()
-            
         
     
     #Update
