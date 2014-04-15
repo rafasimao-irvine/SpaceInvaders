@@ -32,7 +32,6 @@ class Invader(GameObject):
         self._moved -= move
         if self._moved < 0:
             move += self._moved
-        print "move:"+str(move)+" _moved:"+str(self._moved)+" x:"+str(self.box.x)
         
         #moves depending in the current direction
         if self.direction == self.MOVING_RIGHT:
@@ -42,7 +41,6 @@ class Invader(GameObject):
         elif self.direction == self.MOVING_LEFT:
             self.box.x -= move
            
-        print " xfinal:"+str(self.box.x)
         #Determines the next direction
         if self._moved < 0:
             self._next_direction()
