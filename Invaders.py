@@ -27,7 +27,7 @@ class Invaders():
     of it. This will give us the amount of lines down we should drop that spawned invader.
     We then find out how many invaders are currently on the current line we're working with by 
     taking that floor we just calculated, multiplying it by the max amount of invaders, and
-    then subtracting that product from the amount of invaders that have been spawned. We then move
+    then subtracting that product from the amount of invaders that have been spawned. We then _move
     this invader over the appropriate amount of spaces.
     '''
     def __init__(self, amountOfInvadersSpawned):
@@ -41,14 +41,15 @@ class Invaders():
         self.myBox = pygame.Rect(x, y, 10, 10)
         
         self.projectile_list = list()
+        
         self.fire_delay = 15
     
         '''
     Move changes the position of the invader by taking its current position, and adds the current
     movement speed to that old position value. If it hits the side of the game board or it will
-    move past it during this method call, it should drop down one line and reverse direction.
+    _move past it during this method call, it should drop down one line and reverse direction.
     '''
-    def move(self):
+    def _move(self):
         ''' if self.position == #hits either side of the game Board
             self.y=y+1
             self.position = [x, y]
@@ -63,7 +64,7 @@ class Invaders():
 
     
     '''
-    speedUp() is called by the manager class, and will make the invaders move faster when one has 
+    speedUp() is called by the manager class, and will make the invaders _move faster when one has 
     been killed
     '''
     def speedUp(self):
@@ -71,10 +72,10 @@ class Invaders():
         self.mvmtSpeed = a
     
     '''
-    shoot checks to see if a given interval has passed since the last time this invader fired,
+    _shoot checks to see if a given interval has passed since the last time this invader fired,
     if it has, then it should make a projectile object
     '''
-    def shoot(self, clockTime):
+    def _shoot(self, clockTime):
         if self.fire_delay == 15:
             #create a new projectile object moving downward
             self.fire_delay = 0
@@ -84,11 +85,11 @@ class Invaders():
     
     '''
     update() is called by the manager class individually for each invader, and will handle calling 
-    that invader's move() and shoot()
+    that invader's _move() and _shoot()
     '''
     def update(self, clockTimeStamp):
-        self.move()
-        self.shoot(clockTimeStamp)
+        self._move()
+        self._shoot(clockTimeStamp)
         if self.projectile_list.__len__() > 0: 
             for shot in self.projectile_list:
                 shot.move()
