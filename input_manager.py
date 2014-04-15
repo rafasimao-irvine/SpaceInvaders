@@ -37,4 +37,4 @@ class InputManager(object):
     'Notifies the observers that the following event happened'
     def notify(self, event):
         for observer in self._observers:
-            observer.receiveInput(event)
+            observer.receive_input(event)
