@@ -2,9 +2,10 @@
 Created on 14/04/2014
 
 @author: rafaelsimao
+@author: Minor Edits by Brian Paff
 '''
 import pygame
-from invader import Invader
+from Invaders import Invaders
 
 class InvadersManager():
     
@@ -15,21 +16,21 @@ class InvadersManager():
         self.number_of_invaders_alive = 0;
 
         self.spawn_time = 60
-        self._create_row_of_invaders()
+        self._create_block_of_invaders()
 
-    def _create_row_of_invaders(self):
-        for i in range(1, 8):
-            self.invaders_list.append(Invader(self.projectile_list,100*i,30,100))
+    def _create_block_of_invaders(self):
+        for i in range(0, 15):
+            self.invaders_list.append(Invaders(self.projectile_list, 100*i, i))
 
     def update(self, dt):
         self.update_projectiles(dt)
         self.update_invaders(dt)
         
-        if self.spawn_time < 0:
+        '''if self.spawn_time < 0:
             self.spawn_time = 60
             self._create_row_of_invaders()
         else:
-            self.spawn_time -= 0.01*dt
+            self.spawn_time -= 0.01*dt'''
                             
     def update_projectiles(self, dt):
         if self.projectile_list.__len__() > 0: 
@@ -50,3 +51,7 @@ class InvadersManager():
         if self.invaders_list.__len__() > 0: 
             for invader in self.invaders_list:
                 invader.render(screen)
+    
+    def speedUp(self):
+        for i in self.invaders_list:
+            i.speedUp()

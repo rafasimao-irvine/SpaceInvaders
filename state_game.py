@@ -62,7 +62,7 @@ class StateGame(State):
                     if shot.is_colliding_with(invader):
                         self.player.projectile_list.remove(shot)
                         self.invader_manager.invaders_list.remove(invader)
-                        
+                        self.invader_manager.speedUp()
                         
                     
     'Removes a projectile from a projectile list if it is out of the board bounds'
