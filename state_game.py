@@ -75,20 +75,33 @@ class StateGame(State):
     
     '''Render'''
     def render(self):
-        State.render(self) 
-        #background
-        self.screen.fill(pygame.Color(0,0,0))
+        if self.player.life > 0:
+            State.render(self) 
+            #background
+            self.screen.fill(pygame.Color(0,0,0))
         
-        self.player.render(self.screen)
-        #self.invader.render(self.screen)
-        self.invader_manager.render(self.screen)
-        
-        self.draw_player_life()
+            self.player.render(self.screen)
+            #self.invader.render(self.screen)
+            self.invader_manager.render(self.screen)
+            
+            self.draw_player_life()
+        elif self.player.life <= 0:
+            self.draw_game_over_screen()
        
     'Draws the main player life' 
     def draw_player_life(self):
-        msgSurfaceObject = self.fontObj.render("Life "+str(self.player.life), False, pygame.Color(205,255,205))
+        msgSurfaceObject = self.fontObj.render("Life: "+str(self.player.life), False, pygame.Color(205,255,205))
         msgRectObject = msgSurfaceObject.get_rect()
         msgRectObject.topleft = (25, 25)
+
+        self.screen.blit(msgSurfaceObject, msgRectObject)
+        
+    'Draws the game over screen'     
+    def draw_game_over_screen(self):
+        self.screen.fill(pygame.Color(0,0,0))
+        
+        msgSurfaceObject = self.fontObj.render("Game Over", False, pygame.Color(205,255,205))
+        msgRectObject = msgSurfaceObject.get_rect()
+        msgRectObject.topleft = (425, 300)
 
         self.screen.blit(msgSurfaceObject, msgRectObject)

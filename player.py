@@ -70,9 +70,9 @@ class Player(GameObject, InputListener):
                 self.move_right = False
         #Starts firing projectile
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_SPACE:
                 self.fire_shot = True
         #Finishes firing projectile
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_SPACE:
                 self.fire_shot = False

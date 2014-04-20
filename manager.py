@@ -1,5 +1,6 @@
 import pygame
 from input_manager import InputManager
+from state_game_intro import StateGameIntro
 from state_game import StateGame
 
 #initiate the pygame
@@ -19,10 +20,15 @@ class Manager:
     
     #InputManager
     inputManager = InputManager()
+
+    #Introduction state
+    state = StateGameIntro(0, screen, inputManager)
     
-    #Initial state
-    state = StateGame(screen, inputManager)
+    #Game state
+    game_state = StateGame(screen, inputManager)
      
+    #Game started check
+    game_started = False
     #Main Loop
     def _run(self):
         self.gameOn = True
@@ -32,6 +38,11 @@ class Manager:
 
             #Inputs
             self.inputManager.update()
+            
+            if self.game_started == False:
+                if self.state.start == 100:
+                    self.set_state(self.game_state)
+                    self.game_started = True
             
             #Updates
             self.update(dt)
@@ -50,7 +61,7 @@ class Manager:
     def set_state(self, state):
         self.state.destroy()
         self.state = state
-         
+    
     #Render
     def render(self):
         #state renders
@@ -63,6 +74,8 @@ class Manager:
 
 #Run the main loop
 if "__main__" == __name__:
-    
+                
     manager = Manager()
     manager._run()
+
+    
