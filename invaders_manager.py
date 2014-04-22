@@ -58,4 +58,4 @@ class InvadersManager():
     
     def speedUp(self):
         for i in self.invaders_list:
-            i.speedUp()
+            i.speedUp(self.wave_number)
