@@ -13,7 +13,7 @@ class InvadersManager():
     def __init__(self):
         self.invaders_list = list()
         self.projectile_list = list()
-        self.number_of_invaders_alive = 0;
+        self.wave_number = 0;
 
         self.spawn_time = 60
         self._create_block_of_invaders()
@@ -41,6 +41,10 @@ class InvadersManager():
         if self.invaders_list.__len__() > 0: 
             for invader in self.invaders_list:
                 invader.update(dt)
+        else:
+            self.wave_number += 1
+            self._create_block_of_invaders()
+            self.speedUp()
         
 
     def render(self, screen):

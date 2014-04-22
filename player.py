@@ -50,6 +50,11 @@ class Player(GameObject, InputListener):
                 shot.render(pygame.Color(0, 191, 255), screen)
         pygame.draw.rect(screen, pygame.Color(255,255,255), 
                          (self.box.left,self.box.top,self.box.width,self.box.height))
+        
+        #Draws the player life
+        for i in range(0,self.life):
+            pygame.draw.rect(screen, pygame.Color(255,80,80),
+                             (self.box.left+i*13,self.box.bottom+2,10,10))
     
     def receive_hit(self):
         self.life -=1

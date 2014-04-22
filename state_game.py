@@ -84,10 +84,11 @@ class StateGame(State):
             #self.invader.render(self.screen)
             self.invader_manager.render(self.screen)
             
-            self.draw_player_life()
+            #self.draw_player_life()
         elif self.player.life <= 0:
             self.draw_game_over_screen()
        
+    '''
     'Draws the main player life' 
     def draw_player_life(self):
         msgSurfaceObject = self.fontObj.render("Life: "+str(self.player.life), False, pygame.Color(205,255,205))
@@ -95,6 +96,7 @@ class StateGame(State):
         msgRectObject.topleft = (25, 25)
 
         self.screen.blit(msgSurfaceObject, msgRectObject)
+    ''' 
         
     'Draws the game over screen'     
     def draw_game_over_screen(self):

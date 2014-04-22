@@ -58,17 +58,17 @@ class Invaders(GameObject):
     _move past it during this method call, it should drop down one line and reverse direction.
     '''
     def _move(self, dt):
-        self.howManyMoves = self.howManyMoves - self.mvmtSpeed
+        self.howManyMoves = round(self.howManyMoves - self.mvmtSpeed)
             
         if self.direction == self.movingDownFromLeft or self.direction == self.movingDownFromRight:
             self.box.y = self.box.y + 1
             self.howManyMoves = self.howManyMoves - 1
         elif self.direction == self.movingRight:
             self.box.x = self.box.x + self.mvmtSpeed
-            self.howManyMoves = self.howManyMoves - 1
+            #self.howManyMoves = self.howManyMoves - 1
         elif self.direction == self.movingLeft:
             self.box.x = self.box.x - self.mvmtSpeed
-            self.howManyMoves = self.howManyMoves - 1
+            #self.howManyMoves = self.howManyMoves - 1
             
         if self.howManyMoves < 0:
             self._next_direction()
@@ -78,8 +78,8 @@ class Invaders(GameObject):
     speedUp() is called by the manager class, and will make the invaders _move faster when one has 
     been killed
     '''
-    def speedUp(self):
-        a= self.mvmtSpeed * 1.5
+    def speedUp(self, amount = 1.5):
+        a= self.mvmtSpeed * amount
         self.mvmtSpeed = a
     
     '''

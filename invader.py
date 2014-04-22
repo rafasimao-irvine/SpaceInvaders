@@ -58,7 +58,7 @@ class Invader(GameObject):
             self._moved = self.max_side_move
    
     'Maybe used to speed up the invader velocity'
-    def speedUp(self, amount):
+    def speedUp(self, amount = 1):
         self.speed += amount
     
     'Calculates the invader shoot'
