@@ -67,7 +67,8 @@ class StateGame(State):
                             collided = True
                         
                     
-    'Removes a projectile from a projectile list if it is out of the board bounds'
+    'Removes a projectile from a projectile list if it is out of the board bounds.' 
+    'Returns True if it is removed and False if it is not.'
     def _remove_if_out_of_board(self, projectile_list, projectile):
         #If it is out of the board game box, it is removed
         if not self.board_bounds.colliderect(projectile.get_collision_box()):
