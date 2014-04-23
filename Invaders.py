@@ -43,8 +43,7 @@ class Invaders(GameObject):
         
         self.projectile_list = projectiles
         self.max_down_move = 200
-        self.max_side_move = 825
-        self.max_left_moves = 700
+        self.max_side_move = 625
         self.howManyMoves = self.max_side_move
         self.direction = self.movingRight
         self.mvmtSpeed = 4
@@ -103,10 +102,10 @@ class Invaders(GameObject):
         self._move(dt)
         self._shoot(dt)
         #if self.projectile_list.__len__() > 0: 
-           # for shot in self.projectile_list:
-            #    shot.move()
+        #    for shot in self.projectile_list:
+        #        shot.move()
         #if self.fire_delay < 15:
-          #  self.fire_delay+=1
+        #    self.fire_delay+=1
     
     def _next_direction(self):
         self.direction = self.direction + 1
