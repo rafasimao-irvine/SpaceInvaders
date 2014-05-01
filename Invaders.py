@@ -77,7 +77,7 @@ class Invaders(GameObject):
     speedUp() is called by the manager class, and will make the invaders _move faster when one has 
     been killed
     '''
-    def speedUp(self, amount = 1.5):
+    def speedUp(self, amount = 1.10):
         a= self.mvmtSpeed * amount
         self.mvmtSpeed = a
     
